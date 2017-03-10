@@ -32,6 +32,19 @@ class GOONTUBE_PARAM {
     //this.privs = Array.from(privs);
     this.privs = privs;
     this.optional = opt || false;
+    this.min_priv = this.min_priv();
+  }
+
+  min_priv(){
+    let privs = this.privs.join("");
+    switch(privs) {
+      case "111":
+        return "User";
+      case "011":
+        return "Deputy";
+      case "001":
+        return "Admin";
+    }
   }
 }
 
@@ -44,10 +57,10 @@ class GOONTUBE_COMMANDS{
   constructor() {
 
     //  this.addrandom = new GTC("addrandom", null, "Adds a random video from history.", [0,0,1]);
-    this.afk = new GTC("afk", { reason: new GP("reason", "the reason for going afk", [1,1,1], true)
+    this.afk = new GTC("afk", { reason: new GP("[reason]", "the reason for going afk", [1,1,1], true)
                               }, `Set/Un-set 'away' mode. Private messages sent to the user will be received after the user returns.`, [1,1,1]);
 
-    this.ban = new GTC("ban", { username: new GP("username", "user to ban", [0,0,1]),
+    this.ban = new GTC("ban", { username: new GP("[username]", "user to ban", [0,0,1]),
                             reason: new GP("reason", "reason for ban", [0,0,1], true)
                           }, "Ban a user! Probably jynn...", [0,0,1]);
 
@@ -58,8 +71,8 @@ class GOONTUBE_COMMANDS{
                                         dm:new GP("dm", "dailymotion video", [0,0,1])
                                       }, "Prevent a video from being added to the queue.", [0,0,1]);
 
-    this.bump = new GTC("bump", { username: new GP("<username>", "user to bump", [0,1,1]),
-                              reason: new GP("<reason>", "reason for bumping", [0,1,1])
+    this.bump = new GTC("bump", { username: new GP("[username]", "user to bump", [0,1,1]),
+                              reason: new GP("[reason]", "reason for bumping", [0,1,1])
                             }, `Promote a video in the queue.`, [0,1,1]);
 
     this.delete = new GTC("delete", { absent: new GP("absent", "-absent | removes videos from absent people", [0,0,1]),
@@ -71,71 +84,71 @@ class GOONTUBE_COMMANDS{
 
     //this.demote = new GTC("demote", {username: new GP("<username>", "user to demote", [0,0,1])}, "Revoke powers from a user", [1,1,1]);
 
-    this.dice = new GTC('dice', { quantity: new GP("<quantity>", "<quantity> | the number of dice to roll", [1,1,1]),
-                              sides: new GP("<sides>", "<N> | N number of dice sides", [1,1,1])
-                            }, "Roll some dice of the specific number and amount of sides, shorthand <quantity>d<sides>", [1,1,1]);
+    this.dice = new GTC('dice', { quantity: new GP("[quantity]", "[quantity] | the number of dice to roll", [1,1,1]),
+                              sides: new GP("[sides]", "[N] | N number of dice sides", [1,1,1])
+                            }, "Roll some dice of the specific number and amount of sides, shorthand [quantity]d[sides]", [1,1,1]);
 
     this.endpoll = new GTC('endpoll', null, "Close active poll", [0,1,1]);
 
     this.emotes = new GTC('emotes', null, 'Toggle emotes off/on', [0,0,1]);
 
-    this.ignore = new GTC('ignore', { username: new GP("<username>", "user to ignore", [1,1,1])
+    this.ignore = new GTC('ignore', { username: new GP("[username]", "user to ignore", [1,1,1])
                                     }, 'Show your ignore list, or ignore a user by providing a username', [1,1,1]);
 
-    this.import = new GTC('import', { playlist: new GP("<playlist>", "playlist to import", [0,0,1])
-                                    }, 'Import <playlist>', [0,0,1]);
+    this.import = new GTC('import', { playlist: new GP("[playlist]", "playlist to import", [0,0,1])
+                                    }, 'Import [playlist]', [0,0,1]);
 
-    this.kick = new GTC('kick', { username: new GP("<username>", "kick specified user", [0,1,1], true),
+    this.kick = new GTC('kick', { username: new GP("[username]", "kick specified user", [0,1,1], true),
                               all: new GP("-all", "kicks all users", [0,1,1], true),
                               unregistered: new GP("-unregistered", "kicks all unnameds", [0,1,1], true),
-                              message: new GP("<message>", "reason for kick", [0,1,1], true)
+                              message: new GP("[message]", "reason for kick", [0,1,1], true)
                             }, "kick specific user(s)", [0,1,1]);
 
     //this.list = new GTC('list', {random: new GP("-random", "randomizes the playlist", [0,0,1])}, "randomizes the playlist", [0,0,1]);
 
-    this.motd = new GTC('motd', { message: new GP("<message>", "message of the day", [0,0,1])
+    this.motd = new GTC('motd', { message: new GP("[message]", "message of the day", [0,0,1])
                                 }, "Sets the message of the day", [0,0,1]);
 
-    this.permissions = new GTC('permissions', { username: new GP("<username>", "the user this affects", [0,0,1]),
+    this.permissions = new GTC('permissions', { username: new GP("[username]", "the user this affects", [0,0,1]),
                                             plus: new GP("+", "add a permission to specified user", [0,0,1]),
                                             minus: new GP("-", "remove a permission to specific user", [0,0,1]),
                                             code: new GP("B/E/K/S/P/T", "Add/remove this permission B=bump E=endpoll K=kick S=skip P=poll T=pos", [0,0,1])
                                           }, "Check or set permissions for a specific user", [0,0,1]);
 
-    this.poll = new GTC('poll', { title: new GP("<title>", "the title of the poll", [0,1,1]),
+    this.poll = new GTC('poll', { title: new GP("[title]", "the title of the poll", [0,1,1]),
                               star: new GP("*", "precedes a poll entry", [0,1,1])
                             }, "Creates a poll with the specified titles and options $poll title *option *option", [0,1,1]);
 
-    this.pos = new GTC('pos', { minutes: new GP("<minutes>", "the minutes to skip to", [0,1,1]),
-                            seconds: new GP("<seconds>", "the seconds to skip to", [0,1,1], true)
+    this.pos = new GTC('pos', { minutes: new GP("[minutes]", "the minutes to skip to", [0,1,1]),
+                            seconds: new GP("[seconds]", "the seconds to skip to", [0,1,1], true)
                           }, "Sets the video to the desired position and reloads all client players", [0,1,1]);
     //this.promote = new GTC('promote', {username: new GP("<username>", "user to promote", [0,0,1])}, "Grants powers to a user", [0,0,1]);
 
-    this.purge = new GTC('purge', { username: new GP("<username>", "the user you wish to purge", [0,0,1])
+    this.purge = new GTC('purge', { username: new GP("[username]", "the user you wish to purge", [0,0,1])
                                   }, "Purge all videos added by you or a specified user (if mod)", [1,1,1]);
 
     this.reboot = new GTC('reboot', null, "Reboot goontube", [0,0,1]);
 
-    this.seen = new GTC('seen', { username: new GP("<username>", "the user you are seeking", [1,1,1])
+    this.seen = new GTC('seen', { username: new GP("[username]", "the user you are seeking", [1,1,1])
                                 }, "See the last time a user logged in", [1,1,1]);
 
     this.seppuku = new GTC('seppuku', null, "Ban yourself for 24 hours. HIGHLY RECOMMENDED", [1,1,1]);
 
-    this.setskip = new GTC('setskip', { percent: new GP("<%>", "the new percentage required to skip", [0,1,1])
+    this.setskip = new GTC('setskip', { percent: new GP("[%]", "the new percentage required to skip", [0,1,1])
                                       }, "Set the skip percentage. Default 50", [0,1,1]);
 
     this.skip = new GTC('skip', null, "Skip current video playing", [0,1,1]);
 
-    this.tban = new GTC('tban', { username: new GP("<username>", "user to ban", [0,0,1]),
-                              hours: new GP("<hours>", "hours to ban", [0,0,1]),
-                              reason: new GP("<reason>", "reason for ban", [0,0,1], true)
+    this.tban = new GTC('tban', { username: new GP("[username]", "user to ban", [0,0,1]),
+                              hours: new GP("[hours]", "hours to ban", [0,0,1]),
+                              reason: new GP("[reason]", "reason for ban", [0,0,1], true)
                             }, "Ban a user for the specified amount of HOURS", [0,0,1]);
 
-    this.unban = new GTC('unban', { username: new GP("<username>", "user to unban HINT: jynn", [0,0,1])
+    this.unban = new GTC('unban', { username: new GP("[username]", "user to unban HINT: jynn", [0,0,1])
                                   }, "Unbans specified user", [0,0,1]);
 
-    this.whisper = new GTC('whisper', { username: new GP("<username>", "user to whisper to", [1,1,1]),
-                                    message: new GP("<message>", "message to whisper", [1,1,1])
+    this.whisper = new GTC('whisper', { username: new GP("[username]", "user to whisper to", [1,1,1]),
+                                    message: new GP("[message]", "message to whisper", [1,1,1])
                                   }, "Whisper a message to a user", [1,1,1]);
   }
 
