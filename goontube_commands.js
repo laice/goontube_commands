@@ -20,6 +20,10 @@ class GOONTUBE_COMMAND {
         return "Admin";
     }
   }
+
+  c() {
+    return "$"+this.cmd;
+  }
 }
 
 class PARAM {
