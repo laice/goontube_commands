@@ -8,6 +8,18 @@ class GOONTUBE_COMMAND {
     this.privs = privs;
     this.params = params;
   }
+
+  min_priv(){
+    let privs = this.privs.join("");
+    switch(privs) {
+      case "111":
+        return "User";
+      case "011":
+        return "Deputy";
+      case "001":
+        return "Admin";
+    }
+  }
 }
 
 class PARAM {
