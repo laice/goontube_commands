@@ -76,10 +76,10 @@ class GOONTUBE_COMMANDS{
                             }, `Promote a video in the queue.`, [0,1,1]);
 
     this.delete = new GTC("delete", { absent: new GP("absent", "-absent | removes videos from absent people", [0,0,1]),
-                                  all: new GP("-all", "-all | removes all videos from the queue",[0,0,1]),
-                                  dur: new GP("-dur", "-dur <minutes> | all videos longer than specified time", [0,0,1]),
-                                  num: new GP("-num", "-num <N> <username> | deletes users last N videos", [0,0,1]),
-                                  title: new GP("-title", "-title <video title> | remove titled video from the queue", [0,0,1])
+                                  all: new GP("-all", "removes all videos from the queue",[0,0,1]),
+                                  dur: new GP("-dur", "[minutes] | all videos longer than specified time", [0,0,1]),
+                                  num: new GP("-num", "[N] [username] | deletes users last N videos", [0,0,1]),
+                                  title: new GP("-title", "[video title] | remove titled video from the queue", [0,0,1])
                                 },"Delete the last video you added", [1,1,1]);
 
     //this.demote = new GTC("demote", {username: new GP("<username>", "user to demote", [0,0,1])}, "Revoke powers from a user", [1,1,1]);
