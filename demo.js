@@ -1,6 +1,8 @@
 const gtc = require('./goontube_commands.js');
 
+//console.log(gtc);
 // get the command kick
+
 let kick = gtc['kick'];
 
 // show kick description
