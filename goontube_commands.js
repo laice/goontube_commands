@@ -77,15 +77,15 @@ class GOONTUBE_COMMANDS{
 
     this.delete = new GTC("delete", { absent: new GP("-absent", "removes videos from absent people", [0,0,1]),
                                   all: new GP("-all", "removes all videos from the queue",[0,0,1]),
-                                  dur: new GP("-dur", "[minutes] | all videos longer than specified time", [0,0,1]),
-                                  num: new GP("-num", "[N] [username] | deletes users last N videos", [0,0,1]),
-                                  title: new GP("-title", "[video title] | remove titled video from the queue", [0,0,1])
+                                  dur: new GP("-dur [minutes]", "all videos longer than specified time", [0,0,1]),
+                                  num: new GP("-num [N] [username] ", "deletes users last N videos", [0,0,1]),
+                                  title: new GP("-title [video title]", "remove titled video from the queue", [0,0,1])
                                 },"Delete the last video you added", [1,1,1]);
 
     //this.demote = new GTC("demote", {username: new GP("<username>", "user to demote", [0,0,1])}, "Revoke powers from a user", [1,1,1]);
 
-    this.dice = new GTC('dice', { quantity: new GP("[quantity]", "[quantity] | the number of dice to roll", [1,1,1]),
-                              sides: new GP("[sides]", "[N] | N number of dice sides", [1,1,1])
+    this.dice = new GTC('dice', { quantity: new GP("[quantity]", "the number of dice to roll", [1,1,1]),
+                              sides: new GP("[sides]", "N number of dice sides", [1,1,1])
                             }, "Roll some dice of the specific number and amount of sides, shorthand [quantity]d[sides]", [1,1,1]);
 
     this.endpoll = new GTC('endpoll', null, "Close active poll", [0,1,1]);
