@@ -34,3 +34,13 @@ let usr_cmds = gtc.priv_cmds("User");
 console.log("User level commands: ", Object.keys(usr_cmds));
 console.log("Deputy level commands: ", Object.keys(gtc.priv_cmds("Deputy")));
 console.log("Admin level commands: ", Object.keys(gtc.priv_cmds("Admin")));
+
+// inclusive full command objects
+console.log("Admin command objects inclusive: ", Object.keys(gtc.priv_cmds_i("Admin")));
+
+// commands of a priv level with proper names
+console.log("User level commands with proper names: ", gtc.priv_cmds("User", true));
+
+// inclusive priv level
+console.log("Inclusive Admin commands with names: ", gtc.priv_cmds_i("Admin", true));
+console.log("Inclusive Deputy commands with names: ", gtc.priv_cmds_i("Deputy", true));

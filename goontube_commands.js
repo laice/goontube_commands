@@ -139,12 +139,73 @@ class GOONTUBE_COMMANDS{
                                   }, "Whisper a message to a user", [1,1,1]);
   }
 
-  priv_cmds(level) {
+  priv_cmds(level, fullname) {
     let keys = Object.keys(this);
-    let cmds = {};
+    let cmds;
+    if(fullname) {
+      cmds = [];
+    } else {
+      cmds = {};
+    }
+
     for(let i = 0; i < keys.length; i++) {
       if(this[keys[i]].min_priv === level) {
-        cmds[keys[i]] = this[keys[i]];
+        if(fullname) {
+          cmds.push(this[keys[i]].c);
+        } else {
+          cmds[keys[i]] = this[keys[i]];
+        }
+      }
+    }
+
+    return cmds;
+  }
+
+  // inclusive priv commands
+  priv_cmds_i(level, fullname) {
+    let cmds;
+    if(fullname) {
+      cmds = [];
+    } else {
+      cmds = {};
+    }
+
+
+    switch(level) {
+      case "User":
+        return this.priv_cmds("User", fullname);
+      case "Deputy": {
+        let user_cmds = this.priv_cmds("User", fullname);
+        let dep_cmds = this.priv_cmds("Deputy", fullname);
+        if(fullname) {
+          return user_cmds.concat(dep_cmds).sort();
+        } else {
+          return this.collect_cmds(user_cmds, dep_cmds);
+        }
+        break;
+      }
+      case "Admin": {
+        let user_cmds = this.priv_cmds("User", fullname);
+        let dep_cmds = this.priv_cmds("Deputy", fullname);
+        let admin_cmds = this.priv_cmds("Admin", fullname);
+        if(fullname) {
+          return user_cmds.concat(dep_cmds).concat(admin_cmds).sort();
+        } else {
+          return this.collect_cmds(user_cmds, dep_cmds, admin_cmds);
+        }
+        break;
+      }
+
+    }
+  }
+  collect_cmds() {
+    let cmds = {};
+    let len = arguments.length;
+    for( let i = 0; i < arguments.length; i++) {
+      for(let p in arguments[i]) {
+        if(arguments[i].hasOwnProperty(p)) {
+          cmds[p] = arguments[i][p];
+        }
       }
     }
 
