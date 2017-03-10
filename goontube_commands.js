@@ -61,7 +61,7 @@ class GOONTUBE_COMMANDS{
                               }, `Set/Un-set 'away' mode. Private messages sent to the user will be received after the user returns.`, [1,1,1]);
 
     this.ban = new GTC("ban", { username: new GP("[username]", "user to ban", [0,0,1]),
-                            reason: new GP("reason", "reason for ban", [0,0,1], true)
+                            reason: new GP("[reason]", "reason for ban", [0,0,1], true)
                           }, "Ban a user! Probably jynn...", [0,0,1]);
 
     this.banlist = new GTC("banlist", null, "Display a list of users banned from gtubes", [0,0,1]);
