@@ -7,6 +7,7 @@ class GOONTUBE_COMMAND {
     //this.privs = Array.from(privs);
     this.privs = privs;
     this.params = params;
+    this.c = "$" + cmd;
   }
 
   min_priv(){
@@ -21,9 +22,6 @@ class GOONTUBE_COMMAND {
     }
   }
 
-  c() {
-    return "$"+this.cmd;
-  }
 }
 
 class PARAM {
