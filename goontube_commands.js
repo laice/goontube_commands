@@ -1,4 +1,4 @@
-// jynn stuff :unf:
+// a jynn joint
 
 class GOONTUBE_CMD {
   constructor(cmd, params, desc, privs) {

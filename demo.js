@@ -1,3 +1,5 @@
+// a jynn joint
+
 const gtc = require('./goontube_commands.js');
 
 // get the command kick
@@ -14,12 +16,11 @@ console.log(`${kick.c} params:`, kick.params);
 
 // show kick privs:
 console.log(`${kick.c} privs:`, kick.privs);
-
 // minimum priveledge required for kick
 console.log(`${kick.c} Min Priv:`, kick.min_priv);
 
 // whisper privs
-console.log(`${gtc['ban'].c} privs:`, gtc['whisper'].privs);
+console.log(`${gtc['whisper'].c} privs:`, gtc['whisper'].privs);
 // minimum priv for whisper
 console.log(`${gtc['whisper'].c} Min Priv:`, gtc['whisper'].min_priv);
 
