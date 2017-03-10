@@ -85,7 +85,7 @@ class GOONTUBE_COMMANDS{
     //this.demote = new GTC("demote", {username: new GP("<username>", "user to demote", [0,0,1])}, "Revoke powers from a user", [1,1,1]);
 
     this.dice = new GTC('dice', { quantity: new GP("[quantity]", "the number of dice to roll", [1,1,1]),
-                              sides: new GP("[sides]", "N number of dice sides", [1,1,1])
+                              sides: new GP("[sides]", "number of dice sides", [1,1,1])
                             }, "Roll some dice of the specific number and amount of sides, shorthand [quantity]d[sides]", [1,1,1]);
 
     this.endpoll = new GTC('endpoll', null, "Close active poll", [0,1,1]);
