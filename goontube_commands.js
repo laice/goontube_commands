@@ -75,7 +75,7 @@ class GOONTUBE_COMMANDS{
                               reason: new GP("[reason]", "reason for bumping", [0,1,1])
                             }, `Promote a video in the queue.`, [0,1,1]);
 
-    this.delete = new GTC("delete", { absent: new GP("absent", "-absent | removes videos from absent people", [0,0,1]),
+    this.delete = new GTC("delete", { absent: new GP("-absent", "removes videos from absent people", [0,0,1]),
                                   all: new GP("-all", "removes all videos from the queue",[0,0,1]),
                                   dur: new GP("-dur", "[minutes] | all videos longer than specified time", [0,0,1]),
                                   num: new GP("-num", "[N] [username] | deletes users last N videos", [0,0,1]),
